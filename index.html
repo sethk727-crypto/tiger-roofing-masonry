@@ -7,14 +7,14 @@
   
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- ===== NAVBAR ===== -->
   <nav class="navbar">
     <div class="nav-logo">
-      <img src="tiger-logo.jpg" alt="Tiger Custom Construction Logo">
+      <img src="tiger-logo.jpg" alt="Tiger Custom Construction Logo" style="height: 50px; width: auto;">
     </div>
     <ul class="nav-links">
       <li><a href="#" class="active">Home</a></li>
@@ -27,25 +27,21 @@
     <a href="#" class="nav-cta">Get A Free Quote</a>
   </nav>
 
-  <!-- ===== HERO ===== -->
   <header class="hero">
     <div class="hero-content">
       <h1>PREMIUM ROOFING, MASONRY,<br>SIDING, & MORE.<br>TIGER QUALITY YOU CAN TRUST.</h1>
       <a href="#" class="hero-btn">Discover Our Services</a>
     </div>
-    <!-- Stats badge sits in bottom-right of hero -->
     <div class="stats-badge">
       <h2>5,200+</h2>
       <p>Projects Completed in the Greater Philadelphia Area</p>
     </div>
   </header>
 
-  <!-- ===== LOGO OVERLAP (sits between hero and features) ===== -->
   <div class="overlap-container">
-    <img src="tiger-logo.jpg" alt="Tiger Emblem" class="center-emblem">
+   <img src="tiger-logo.jpg" alt="Tiger Emblem" class="center-emblem" style="width: 150px; height: auto;">
   </div>
 
-  <!-- ===== FEATURES BAR ===== -->
   <div class="features-bar">
     <div class="feature-item">
       <i class="fa-solid fa-people-group"></i>
@@ -55,8 +51,6 @@
       <i class="fa-solid fa-file-signature"></i>
       <p>Expert Masonry Services</p>
     </div>
-    <!-- Empty center column — logo sits here visually -->
-    <div class="feature-item feature-spacer"></div>
     <div class="feature-item">
       <i class="fa-solid fa-pen-to-square"></i>
       <p>Custom Construction</p>
@@ -67,11 +61,10 @@
     </div>
   </div>
 
-  <!-- ===== SERVICES ===== -->
   <section class="services-section">
     <h2>Services Overview</h2>
     <div class="services-grid">
-
+      
       <div class="service-card">
         <div class="card-top">
           <i class="fa-solid fa-house-chimney"></i>
@@ -112,26 +105,19 @@
     </div>
   </section>
 
-  <!-- ===== UTILITY ROW ===== -->
   <section class="utility-row">
-
-    <!-- Before & After Slider -->
+    
     <div class="slider-box">
-      <h4>Before &amp; After</h4>
       <div class="slider-container">
         <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=500&q=80" alt="After" class="slider-img">
         <div class="img-fg-wrap">
-          <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=500&q=80" alt="Before" class="slider-img slider-img-wide">
+          <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=500&q=80" alt="Before" class="slider-img" style="width:500px; max-width:none;">
         </div>
-        <!-- Arrow handles -->
-        <button class="slider-arrow slider-arrow-left" aria-label="Slide left"><i class="fa-solid fa-chevron-left"></i></button>
-        <button class="slider-arrow slider-arrow-right" aria-label="Slide right"><i class="fa-solid fa-chevron-right"></i></button>
         <input type="range" min="1" max="100" value="50" class="html-slider" id="drag-engine">
         <div class="slider-badge">Drag Slider</div>
       </div>
     </div>
 
-    <!-- Contact -->
     <div class="contact-details">
       <h4>Contact</h4>
       <ul class="contact-list">
@@ -139,72 +125,43 @@
         <li><i class="fa-solid fa-phone"></i> (610) 656-3960</li>
         <li><i class="fa-solid fa-envelope"></i> tigercustom@gmail.com</li>
       </ul>
-      <!-- Small logo under contact matching mockup -->
-      <div class="contact-logo">
-        <img src="tiger-logo.jpg" alt="Tiger Logo">
-      </div>
     </div>
 
-    <!-- Service Map -->
     <div class="map-container">
       <h4>Service Map</h4>
       <div class="map-box">
-        <i class="fa-solid fa-map-location-dot"></i>
+        <i class="fa-solid fa-map-location-dot" style="font-size:2rem; margin-right:10px; color:var(--tiger-orange);"></i>
         <span>Map Tracking Enabled (Norristown Core Area)</span>
       </div>
     </div>
 
   </section>
 
-  <!-- ===== FOOTER ===== -->
   <footer class="footer-trust">
-
-    <!-- Left: Reviews -->
     <div class="google-rating">
-      <i class="fa-brands fa-google"></i>
-      <div class="rating-details">
-        <strong class="rating-label">Reviews</strong>
-        <div class="stars-row">
-          <strong class="rating-number">4.9</strong>
-          <span class="stars">
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-          </span>
-        </div>
-        <p>215 verified reviews</p>
+      <i class="fa-brands fa-google" style="font-size:2rem;"></i>
+      <div>
+        <strong>4.9</strong>
+        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+        <p style="font-size:0.75rem; color:var(--text-muted);">215 verified reviews</p>
       </div>
     </div>
 
-    <!-- Center: Logo -->
     <div class="footer-logo">
-      <img src="tiger-logo.jpg" alt="Tiger Roofing & Masonry">
+      <img src="tiger-logo.jpg" alt="Centered Bottom Logo" style="height: 80px; width: auto;">
     </div>
 
-    <!-- Right: Google Reviews + sparkle -->
-    <div class="google-rating google-rating-right">
-      <div class="rating-details">
-        <strong class="rating-label">Google Reviews</strong>
-        <div class="stars-row">
-          <strong class="rating-number">4.9</strong>
-          <span class="stars">
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-          </span>
-        </div>
-        <p>215 verified reviews</p>
+    <div class="google-rating">
+      <strong style="font-size:1.5rem;">Google</strong>
+      <div>
+        <strong>4.9</strong>
+        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+        <p style="font-size:0.75rem; color:var(--text-muted);">215 verified reviews</p>
       </div>
-      <!-- Sparkle icon matching mockup -->
-      <div class="sparkle-icon">&#10022;</div>
     </div>
-
   </footer>
 
   <script src="script.js"></script>
+
 </body>
 </html>
