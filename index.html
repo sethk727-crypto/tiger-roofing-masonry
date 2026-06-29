@@ -1,83 +1,167 @@
-/**
- * TIGER ROOFING & MASONRY - CORE INTERACTIVE ENGINE
- * Features: 1:1 Slider Tracking, 3D Card Physics, Scroll Observers
- */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tiger Custom Construction | Premium Roofing & Masonry</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-document.addEventListener('DOMContentLoaded', () => {
-  
-  // --- 1. BEFORE & AFTER SLIDER ENGINE ---
-  const slider = document.getElementById('drag-engine');
-  const fgWrap = document.querySelector('.img-fg-wrap');
-  
-  if (slider && fgWrap) {
-    slider.addEventListener('input', (e) => {
-      // Sync foreground wrapper width with slider value precisely
-      fgWrap.style.width = `${e.target.value}%`;
-    });
-  }
+  <nav class="navbar">
+    <div class="nav-logo">
+      <img src="tiger-logo.jpg" alt="Tiger Custom Construction Logo" style="height: 50px; width: auto;">
+    </div>
+    <ul class="nav-links">
+      <li><a href="#" class="active">Home</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Portfolio</a></li>
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Blog</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <a href="#" class="nav-cta">Get A Free Quote</a>
+  </nav>
 
-  // --- 2. 3D TILT PHYSICS FOR SERVICE CARDS ---
-  const cards = document.querySelectorAll('.service-card');
-  
-  cards.forEach(card => {
-    // Track mouse movement over the card
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left; // Cursor X position within card
-      const y = e.clientY - rect.top;  // Cursor Y position within card
+  <header class="hero">
+    <div class="hero-content">
+      <h1>PREMIUM ROOFING, MASONRY,<br>SIDING, & MORE.<br>TIGER QUALITY YOU CAN TRUST.</h1>
+      <a href="#" class="hero-btn">Discover Our Services</a>
+    </div>
+    <div class="stats-badge">
+      <h2>5,200+</h2>
+      <p>Projects Completed in the Greater Philadelphia Area</p>
+    </div>
+  </header>
+
+  <div class="overlap-container">
+   <img src="tiger-logo.jpg" alt="Tiger Emblem" class="center-emblem" style="width: 150px; height: auto;">
+  </div>
+
+  <div class="features-bar">
+    <div class="feature-item">
+      <i class="fa-solid fa-people-group"></i>
+      <p>Premium Roofing & Siding</p>
+    </div>
+    <div class="feature-item">
+      <i class="fa-solid fa-file-signature"></i>
+      <p>Expert Masonry Services</p>
+    </div>
+    <div class="feature-item">
+      <i class="fa-solid fa-pen-to-square"></i>
+      <p>Custom Construction</p>
+    </div>
+    <div class="feature-item">
+      <i class="fa-solid fa-screwdriver-wrench"></i>
+      <p>Tiger Custom Construction</p>
+    </div>
+  </div>
+
+  <section class="services-section">
+    <h2>Services Overview</h2>
+    <div class="services-grid">
       
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      
-      // Calculate rotation based on distance from center (max 8 degrees for subtlety)
-      const rotateX = ((y - centerY) / centerY) * -8; 
-      const rotateY = ((x - centerX) / centerX) * 8;
-      
-      // Apply the 3D transform dynamically
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-    });
+      <div class="service-card">
+        <div class="card-top">
+          <i class="fa-solid fa-house-chimney"></i>
+          <h3>Roofing</h3>
+          <p>Expert installation, emergency repairs, and routine maintenance.</p>
+        </div>
+        <a href="#" class="card-link">Learn More</a>
+      </div>
+
+      <div class="service-card">
+        <div class="card-top">
+          <i class="fa-solid fa-cubes"></i>
+          <h3>Masonry</h3>
+          <p>Retaining walls, chimney repair, and custom exterior masonry.</p>
+        </div>
+        <div class="hover-context-box">
+          <span>Brick Pointing 👆</span>
+          <span>Stone Veneer</span>
+          <span>Chimney Repair</span>
+        </div>
+        <a href="#" class="card-link">Learn More</a>
+      </div>
+
+      <div class="service-card">
+        <div class="card-top">
+          <i class="fa-solid fa-layer-group"></i>
+          <h3>Siding</h3>
+          <p>Transform your home's exterior with high-quality siding.</p>
+        </div>
+        <div class="hover-context-box">
+          <span>Vinyl Siding 👆</span>
+          <span>Fiber Cement</span>
+          <span>Fascia & Soffits</span>
+        </div>
+        <a href="#" class="card-link">...And More</a>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="utility-row">
     
-    // Snap back to original position when mouse leaves
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-      card.style.transition = 'transform 0.5s ease-out'; // Smooth snap back
-    });
-    
-    // Remove transition delay while actively tracking mouse for zero latency
-    card.addEventListener('mouseenter', () => {
-      card.style.transition = 'none'; 
-    });
-  });
+    <div class="slider-box">
+      <div class="slider-container">
+        <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=500&q=80" alt="After" class="slider-img">
+        <div class="img-fg-wrap">
+          <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=500&q=80" alt="Before" class="slider-img" style="width:500px; max-width:none;">
+        </div>
+        <input type="range" min="1" max="100" value="50" class="html-slider" id="drag-engine">
+        <div class="slider-badge">Drag Slider</div>
+      </div>
+    </div>
 
-  // --- 3. INTERSECTION OBSERVER (SCROLL ANIMATIONS) ---
-  // Setup the hardware-accelerated initial states via JS so fallback works if JS fails
-  const animatedElements = document.querySelectorAll('.features-bar, .service-card, .utility-row');
-  
-  animatedElements.forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(40px)';
-    el.style.transition = 'opacity 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1)';
-  });
+    <div class="contact-details">
+      <h4>Contact</h4>
+      <ul class="contact-list">
+        <li><i class="fa-solid fa-location-dot"></i> Norristown, PA</li>
+        <li><i class="fa-solid fa-phone"></i> (610) 656-3960</li>
+        <li><i class="fa-solid fa-envelope"></i> tigercustom@gmail.com</li>
+      </ul>
+    </div>
 
-  // Configure the observer payload
-  const observerOptions = {
-    threshold: 0.15, // Trigger when 15% of element is visible
-    rootMargin: "0px 0px -50px 0px"
-  };
+    <div class="map-container">
+      <h4>Service Map</h4>
+      <div class="map-box">
+        <i class="fa-solid fa-map-location-dot" style="font-size:2rem; margin-right:10px; color:var(--tiger-orange);"></i>
+        <span>Map Tracking Enabled (Norristown Core Area)</span>
+      </div>
+    </div>
 
-  const scrollObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        // Trigger the animation
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-        
-        // Stop observing once animated to save memory
-        observer.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
+  </section>
 
-  // Deploy observer to targets
-  animatedElements.forEach(el => scrollObserver.observe(el));
-});
+  <footer class="footer-trust">
+    <div class="google-rating">
+      <i class="fa-brands fa-google" style="font-size:2rem;"></i>
+      <div>
+        <strong>4.9</strong>
+        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+        <p style="font-size:0.75rem; color:var(--text-muted);">215 verified reviews</p>
+      </div>
+    </div>
+
+    <div class="footer-logo">
+      <img src="tiger-logo.jpg" alt="Centered Bottom Logo" style="height: 80px; width: auto;">
+    </div>
+
+    <div class="google-rating">
+      <strong style="font-size:1.5rem;">Google</strong>
+      <div>
+        <strong>4.9</strong>
+        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+        <p style="font-size:0.75rem; color:var(--text-muted);">215 verified reviews</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
