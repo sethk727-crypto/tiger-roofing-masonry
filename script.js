@@ -1,83 +1,91 @@
-/**
- * TIGER ROOFING & MASONRY - CORE INTERACTIVE ENGINE
- * Features: 1:1 Slider Tracking, 3D Card Physics, Scroll Observers
- */
-
 document.addEventListener('DOMContentLoaded', () => {
   
-  // --- 1. BEFORE & AFTER SLIDER ENGINE ---
+  // ==========================================
+  // 1. SPA ROUTING ENGINE (TAB SWITCHING)
+  // ==========================================
+  const navLinks = document.querySelectorAll('.nav-route');
+  const tabViews = document.querySelectorAll('.tab-view');
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('data-target');
+
+      // Update Nav Active States
+      navLinks.forEach(nav => nav.classList.remove('active'));
+      // Only highlight top links, not the CTA button
+      if (!this.classList.contains('nav-cta') && !this.classList.contains('hero-btn') && !this.classList.contains('card-link')) {
+        this.classList.add('active');
+      }
+
+      // Hide all views and reset animations
+      tabViews.forEach(view => {
+        view.classList.remove('active-view');
+        view.style.animation = 'none'; 
+      });
+
+      // Show target view with hologram physics
+      const targetView = document.getElementById(targetId);
+      if (targetView) {
+        targetView.classList.add('active-view');
+        void targetView.offsetWidth; // Trigger reflow
+        targetView.style.animation = 'hologramFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards';
+        
+        // Smooth snap to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // ==========================================
+  // 2. 3D TILT PHYSICS (Cards & Stats)
+  // ==========================================
+  const glowItems = document.querySelectorAll('.glow-effect');
+  glowItems.forEach(item => {
+    item.addEventListener('mousemove', (e) => {
+      const rect = item.getBoundingClientRect();
+      const x = e.clientX - rect.left; 
+      const y = e.clientY - rect.top;
+      const rotateX = ((y - (rect.height / 2)) / (rect.height / 2)) * -6; 
+      const rotateY = ((x - (rect.width / 2)) / (rect.width / 2)) * 6;
+      item.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+    });
+    item.addEventListener('mouseleave', () => { 
+      item.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`; 
+    });
+  });
+
+  // ==========================================
+  // 3. BEFORE/AFTER SLIDER ENGINE
+  // ==========================================
   const slider = document.getElementById('drag-engine');
   const fgWrap = document.querySelector('.img-fg-wrap');
-  
   if (slider && fgWrap) {
-    slider.addEventListener('input', (e) => {
-      // Sync foreground wrapper width with slider value precisely
-      fgWrap.style.width = `${e.target.value}%`;
+    slider.addEventListener('input', (e) => { 
+      fgWrap.style.width = `${e.target.value}%`; 
     });
   }
 
-  // --- 2. 3D TILT PHYSICS FOR SERVICE CARDS ---
-  const cards = document.querySelectorAll('.service-card');
+  // ==========================================
+  // 4. NLP HYPNOTIC FORM SUBMISSION
+  // ==========================================
+  const formBtn = document.getElementById('form-btn');
+  const form = document.getElementById('tiger-form');
   
-  cards.forEach(card => {
-    // Track mouse movement over the card
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left; // Cursor X position within card
-      const y = e.clientY - rect.top;  // Cursor Y position within card
+  if(form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      // NLP Transition State
+      formBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> TRANSMITTING BLUEPRINT...';
+      formBtn.style.backgroundColor = '#4285F4'; // Switch to trust blue
+      formBtn.style.boxShadow = '0 0 30px rgba(66, 133, 244, 0.8)';
       
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      
-      // Calculate rotation based on distance from center (max 8 degrees for subtlety)
-      const rotateX = ((y - centerY) / centerY) * -8; 
-      const rotateY = ((x - centerX) / centerX) * 8;
-      
-      // Apply the 3D transform dynamically
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+      setTimeout(() => {
+        formBtn.innerHTML = '<i class="fa-solid fa-check"></i> BLUEPRINT SECURED';
+        formBtn.style.backgroundColor = '#34A853'; // Switch to success green
+        formBtn.style.boxShadow = '0 0 30px rgba(52, 168, 83, 0.8)';
+        form.reset();
+      }, 2000);
     });
-    
-    // Snap back to original position when mouse leaves
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-      card.style.transition = 'transform 0.5s ease-out'; // Smooth snap back
-    });
-    
-    // Remove transition delay while actively tracking mouse for zero latency
-    card.addEventListener('mouseenter', () => {
-      card.style.transition = 'none'; 
-    });
-  });
-
-  // --- 3. INTERSECTION OBSERVER (SCROLL ANIMATIONS) ---
-  // Setup the hardware-accelerated initial states via JS so fallback works if JS fails
-  const animatedElements = document.querySelectorAll('.features-bar, .service-card, .utility-row');
-  
-  animatedElements.forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(40px)';
-    el.style.transition = 'opacity 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1)';
-  });
-
-  // Configure the observer payload
-  const observerOptions = {
-    threshold: 0.15, // Trigger when 15% of element is visible
-    rootMargin: "0px 0px -50px 0px"
-  };
-
-  const scrollObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        // Trigger the animation
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-        
-        // Stop observing once animated to save memory
-        observer.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
-
-  // Deploy observer to targets
-  animatedElements.forEach(el => scrollObserver.observe(el));
+  }
 });
