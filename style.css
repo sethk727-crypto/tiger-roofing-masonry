@@ -1,9 +1,8 @@
 /* =========================================
    TIGER ROOFING & MASONRY - CORE STYLES
    ========================================= */
- 
+
 :root {
-  /* Color Palette */
   --bg-base: #121214;
   --bg-surface: #1c1c1e;
   --bg-surface-light: #242426;
@@ -12,20 +11,17 @@
   --text-primary: #ffffff;
   --text-secondary: #9ca3af;
   --border-subtle: rgba(255, 255, 255, 0.08);
-  
-  /* Typography & Spacing */
   --font-main: 'Inter', system-ui, sans-serif;
   --transition-speed: 0.3s;
   --max-width: 1200px;
 }
- 
-/* --- RESET & FOUNDATION --- */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
- 
+
 body {
   background-color: var(--bg-base);
   color: var(--text-primary);
@@ -33,27 +29,32 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
- 
+
 /* --- NAVIGATION --- */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 5%;
-  background-color: rgba(24, 24, 27, 0.95);
+  background-color: rgba(18, 18, 20, 0.97);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-subtle);
   position: sticky;
   top: 0;
   z-index: 1000;
 }
- 
+
+.nav-logo img {
+  height: 60px;
+  width: auto;
+}
+
 .nav-links {
   display: flex;
   gap: 2.5rem;
   list-style: none;
 }
- 
+
 .nav-links a {
   color: var(--text-primary);
   text-decoration: none;
@@ -61,11 +62,12 @@ body {
   font-size: 0.95rem;
   transition: color var(--transition-speed);
 }
- 
-.nav-links a:hover, .nav-links .active {
+
+.nav-links a:hover,
+.nav-links a.active {
   color: var(--brand-orange);
 }
- 
+
 .nav-cta {
   background-color: var(--brand-orange);
   color: var(--text-primary);
@@ -75,103 +77,119 @@ body {
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  transition: background-color var(--transition-speed), transform 0.2s;
+  font-size: 0.9rem;
+  transition: background-color var(--transition-speed), transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 0 12px rgba(249, 115, 22, 0.4);
 }
- 
+
 .nav-cta:hover {
   background-color: var(--brand-orange-hover);
   transform: translateY(-2px);
+  box-shadow: 0 0 24px rgba(249, 115, 22, 0.7);
 }
- 
+
 /* --- HERO SECTION --- */
 .hero {
   position: relative;
-  height: 65vh;
-  min-height: 500px;
+  height: 70vh;
+  min-height: 520px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  background: linear-gradient(to bottom, rgba(18, 18, 20, 0.4), rgba(18, 18, 20, 0.8)), 
+  background: linear-gradient(to bottom, rgba(18, 18, 20, 0.35), rgba(18, 18, 20, 0.75)),
               url('https://raw.githubusercontent.com/sethk727-crypto/tiger-roofing-masonry/main/Roof.jpg') center/cover no-repeat;
+  overflow: visible;
 }
- 
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 1rem;
+}
+
 .hero-content h1 {
-  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-size: clamp(2rem, 4vw, 3.2rem);
   font-weight: 800;
   line-height: 1.15;
   letter-spacing: 1px;
-  max-width: 900px;
+  max-width: 860px;
   margin-bottom: 2rem;
-  text-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.7), 0 0 40px rgba(0,0,0,0.5);
 }
- 
+
 .hero-btn {
   background-color: #f3f4f6;
   color: #111827;
-  padding: 0.875rem 2rem;
+  padding: 0.875rem 2.25rem;
   border-radius: 6px;
   font-weight: 700;
   text-decoration: none;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
   transition: all var(--transition-speed);
+  display: inline-block;
 }
- 
+
 .hero-btn:hover {
   background-color: #ffffff;
-  box-shadow: 0 0 20px rgba(255,255,255,0.2);
+  box-shadow: 0 0 24px rgba(255, 255, 255, 0.35);
+  transform: translateY(-2px);
 }
- 
-/* Floating Glassmorphism Badge */
+
+/* Stats Badge — bottom right */
 .stats-badge {
   position: absolute;
-  bottom: 2rem;
+  bottom: 2.5rem;
   right: 5%;
-  background: rgba(28, 28, 30, 0.7);
-  backdrop-filter: blur(12px);
-  border: 1px solid var(--border-subtle);
+  background: rgba(20, 20, 22, 0.75);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(249, 115, 22, 0.3);
   border-left: 4px solid var(--brand-orange);
-  padding: 1.25rem;
+  padding: 1.25rem 1.5rem;
   border-radius: 8px;
-  max-width: 260px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  max-width: 270px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 20px rgba(249, 115, 22, 0.15);
+  z-index: 2;
 }
- 
+
 .stats-badge h2 {
   color: var(--brand-orange);
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 800;
   margin-bottom: 0.25rem;
+  text-shadow: 0 0 20px rgba(249, 115, 22, 0.6);
 }
- 
+
 .stats-badge p {
   font-size: 0.85rem;
   color: var(--text-secondary);
   line-height: 1.4;
 }
- 
-/* --- OVERLAP EMBLEM & FEATURES --- */
+
+/* --- OVERLAP EMBLEM --- */
 .overlap-container {
   position: relative;
-  height: 80px;
+  height: 100px;
   display: flex;
   justify-content: center;
   z-index: 20;
 }
- 
+
 .center-emblem {
   position: absolute;
-  top: -100px;
-  width: 200px;
-  filter: drop-shadow(0 15px 25px rgba(0,0,0,0.6));
+  top: -120px;
+  width: 220px;
+  filter: drop-shadow(0 15px 30px rgba(0,0,0,0.7));
   transition: transform var(--transition-speed);
 }
- 
+
 .center-emblem:hover {
   transform: scale(1.05);
 }
- 
+
+/* --- FEATURES BAR --- */
 .features-bar {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -179,8 +197,9 @@ body {
   margin: 0 auto;
   padding: 2rem 5%;
   gap: 1.5rem;
+  border-bottom: 1px solid var(--border-subtle);
 }
- 
+
 .feature-item {
   display: flex;
   flex-direction: column;
@@ -188,18 +207,19 @@ body {
   text-align: center;
   gap: 0.75rem;
 }
- 
+
 .feature-item i {
   color: var(--brand-orange);
   font-size: 1.75rem;
+  filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.5));
 }
- 
+
 .feature-item p {
   font-size: 0.95rem;
   font-weight: 600;
   color: var(--text-secondary);
 }
- 
+
 /* --- SERVICES GRID --- */
 .services-section {
   padding: 4rem 5%;
@@ -207,20 +227,20 @@ body {
   margin: 0 auto;
   text-align: center;
 }
- 
+
 .services-section h2 {
   font-size: 2rem;
   font-weight: 800;
   margin-bottom: 3rem;
   text-transform: uppercase;
 }
- 
+
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
 }
- 
+
 .service-card {
   background-color: var(--bg-surface);
   border: 1px solid var(--border-subtle);
@@ -233,42 +253,48 @@ body {
   text-align: center;
   transition: all var(--transition-speed);
 }
- 
+
 .service-card:hover {
   border-color: var(--brand-orange);
   background-color: var(--bg-surface-light);
   transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4), 0 0 20px rgba(249, 115, 22, 0.1);
 }
- 
+
 .card-top i {
   color: var(--brand-orange);
   font-size: 2.5rem;
   margin-bottom: 1.5rem;
+  filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.4));
 }
- 
+
 .card-top h3 {
   font-size: 1.4rem;
   font-weight: 700;
   text-transform: uppercase;
   margin-bottom: 1rem;
 }
- 
+
 .card-top p {
   color: var(--text-secondary);
   font-size: 0.95rem;
   line-height: 1.6;
 }
- 
+
 .card-link {
   margin-top: 2rem;
   color: var(--brand-orange);
   text-decoration: none;
   font-weight: 700;
   text-transform: uppercase;
+  transition: text-shadow var(--transition-speed);
 }
- 
-/* Context Menus (Simulated Tooltips) */
+
+.card-link:hover {
+  text-shadow: 0 0 12px rgba(249, 115, 22, 0.7);
+}
+
+/* Context Menus */
 .hover-context-box {
   position: absolute;
   top: 10%;
@@ -284,21 +310,21 @@ body {
   visibility: hidden;
   transition: all var(--transition-speed);
 }
- 
+
 .service-card:hover .hover-context-box {
   opacity: 1;
   visibility: visible;
   right: -10%;
 }
- 
+
 .hover-context-box span {
   display: block;
   font-size: 0.8rem;
   color: var(--text-secondary);
   padding: 0.25rem 0;
 }
- 
-/* --- UTILITY INFRASTRUCTURE ROW --- */
+
+/* --- UTILITY ROW --- */
 .utility-row {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -307,7 +333,7 @@ body {
   margin: 0 auto 5rem auto;
   padding: 0 5%;
 }
- 
+
 .utility-row h4 {
   font-size: 1.25rem;
   font-weight: 700;
@@ -315,8 +341,7 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
- 
-/* Custom Image Slider */
+
 .slider-container {
   position: relative;
   width: 100%;
@@ -325,14 +350,14 @@ body {
   overflow: hidden;
   border: 1px solid var(--border-subtle);
 }
- 
+
 .slider-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   position: absolute;
 }
- 
+
 .img-fg-wrap {
   position: absolute;
   top: 0; left: 0;
@@ -341,7 +366,7 @@ body {
   overflow: hidden;
   border-right: 3px solid var(--brand-orange);
 }
- 
+
 .html-slider {
   position: absolute;
   appearance: none;
@@ -352,7 +377,7 @@ body {
   z-index: 30;
   cursor: ew-resize;
 }
- 
+
 .slider-badge {
   position: absolute;
   bottom: 12px;
@@ -365,16 +390,16 @@ body {
   border-radius: 4px;
   z-index: 40;
   pointer-events: none;
+  box-shadow: 0 0 12px rgba(249, 115, 22, 0.6);
 }
- 
-/* Contact Details */
+
 .contact-list {
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
 }
- 
+
 .contact-list li {
   display: flex;
   align-items: center;
@@ -382,15 +407,14 @@ body {
   color: var(--text-secondary);
   font-size: 1rem;
 }
- 
+
 .contact-list i {
   color: var(--brand-orange);
   font-size: 1.2rem;
   width: 20px;
   text-align: center;
 }
- 
-/* Map Box */
+
 .map-box {
   width: 100%;
   height: 180px;
@@ -401,7 +425,7 @@ body {
   border: 1px solid var(--border-subtle);
   position: relative;
 }
- 
+
 /* --- FOOTER TRUST ZONE --- */
 .footer-trust {
   border-top: 1px solid var(--border-subtle);
@@ -412,44 +436,43 @@ body {
   max-width: var(--max-width);
   margin: 0 auto;
 }
- 
+
 .google-rating {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
- 
+
 .google-rating i.fa-google {
   font-size: 2.5rem;
   color: #fff;
 }
- 
+
 .google-rating .stars i {
   color: var(--brand-orange);
   font-size: 0.9rem;
 }
- 
+
 .google-rating p {
   font-size: 0.8rem;
   color: var(--text-secondary);
   margin-top: 0.25rem;
 }
- 
+
 .footer-logo img {
   height: 80px;
   filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
 }
- 
-/* Responsive Breakpoints */
+
+/* --- RESPONSIVE --- */
 @media screen and (max-width: 900px) {
   .features-bar { grid-template-columns: repeat(2, 1fr); }
   .footer-trust { flex-direction: column; gap: 2rem; text-align: center; }
-  .center-emblem { width: 150px; top: -75px; }
+  .center-emblem { width: 160px; top: -90px; }
 }
- 
+
 @media screen and (max-width: 768px) {
   .nav-links { display: none; }
   .hero-content h1 { font-size: 2.25rem; }
-  .stats-badge { position: relative; bottom: 0; right: 0; margin-top: 2rem; }
+  .stats-badge { position: relative; bottom: 0; right: 0; margin-top: 2rem; max-width: 100%; }
 }
- 
