@@ -12,7 +12,7 @@
 
   <nav class="navbar">
     <div class="nav-logo">
-      <img src="tiger-logo.jpg" alt="Tiger Custom Construction Logo" style="height: 50px; width: auto;">
+      <img src="tiger-logo.png" alt="Tiger Custom Construction Logo" style="height: 50px; width: auto;">
     </div>
     <ul class="nav-links">
       <li><a href="#" class="nav-route active" data-target="view-home">Home</a></li>
@@ -35,13 +35,14 @@
         <span><i class="fa-solid fa-calendar-check"></i> Free On-Site Evaluations</span>
       </div>
       <div class="stats-badge">
-        <h2>5,200+</h2>
+        <h2 class="text-glow-orange">5,200+</h2>
         <p>Projects Completed in the Greater Philadelphia Area</p>
       </div>
     </header>
 
+    <!-- Advanced Overlap Architecture -->
     <div class="overlap-container">
-     <img src="tiger-logo.jpg" alt="Tiger Emblem" class="center-emblem float-anim">
+     <img src="tiger-logo.png" alt="Tiger Emblem" class="center-emblem float-anim">
     </div>
 
     <div class="features-bar">
@@ -94,9 +95,9 @@
     <section class="utility-row">
       <div class="slider-box">
         <div class="slider-container">
-          <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=500&q=80" alt="After" class="slider-img">
+          <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=800&q=80" alt="After" class="slider-img">
           <div class="img-fg-wrap">
-            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=500&q=80" alt="Before" class="slider-img" style="width:500px; max-width:none;">
+            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80" alt="Before" class="slider-img" style="width:200%; max-width:none;">
           </div>
           <input type="range" min="1" max="100" value="50" class="html-slider" id="drag-engine">
           <div class="slider-badge">Drag Slider</div>
@@ -115,19 +116,42 @@
 
   <main id="view-portfolio" class="tab-view">
     <div class="internal-hero">
-      <h1>OUR MASTERPIECES</h1>
+      <h1 class="text-glow-orange">OUR MASTERPIECES</h1>
       <p>Precision execution in every brick, shingle, and panel.</p>
     </div>
-    <section class="portfolio-grid">
-      <div class="portfolio-item glow-effect"><img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=600&q=80" alt="Masonry Work"><div class="portfolio-overlay"><h4>Custom Masonry</h4></div></div>
-      <div class="portfolio-item glow-effect"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" alt="Roofing Work"><div class="portfolio-overlay"><h4>Architectural Roofing</h4></div></div>
-      <div class="portfolio-item glow-effect"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80" alt="Siding Work"><div class="portfolio-overlay"><h4>Premium Siding</h4></div></div>
+    
+    <!-- Modern Asymmetric CSS Grid -->
+    <section class="portfolio-grid advanced-grid">
+      <div class="portfolio-item glow-effect tall">
+        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=600&q=80" alt="Custom Masonry">
+        <div class="portfolio-overlay"><h4>Custom Masonry</h4></div>
+      </div>
+      <div class="portfolio-item glow-effect wide">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Architectural Roofing">
+        <div class="portfolio-overlay"><h4>Architectural Roofing</h4></div>
+      </div>
+      <div class="portfolio-item glow-effect">
+        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80" alt="Premium Siding">
+        <div class="portfolio-overlay"><h4>Premium Siding</h4></div>
+      </div>
+      <div class="portfolio-item glow-effect">
+        <img src="https://images.unsplash.com/photo-1622372737633-82bd7865c192?auto=format&fit=crop&w=600&q=80" alt="Stone Veneer">
+        <div class="portfolio-overlay"><h4>Stone Veneer Work</h4></div>
+      </div>
+      <div class="portfolio-item glow-effect wide">
+        <img src="https://images.unsplash.com/photo-1605810731664-cae6503c80bf?auto=format&fit=crop&w=800&q=80" alt="Exterior Overhaul">
+        <div class="portfolio-overlay"><h4>Complete Exterior Build</h4></div>
+      </div>
+      <div class="portfolio-item glow-effect">
+        <img src="https://images.unsplash.com/photo-1517409228913-7efd5fb305c0?auto=format&fit=crop&w=600&q=80" alt="Brick Pointing">
+        <div class="portfolio-overlay"><h4>Expert Brick Pointing</h4></div>
+      </div>
     </section>
   </main>
 
   <main id="view-about" class="tab-view">
     <div class="internal-hero">
-      <h1>THE TIGER LEGACY</h1>
+      <h1 class="text-glow-orange">THE TIGER LEGACY</h1>
       <p>Forged in Norristown. Built to weather any storm.</p>
     </div>
     <section class="about-content">
@@ -138,15 +162,15 @@
         <p>Headquartered in Norristown, PA, our mission is simple: to build it once, build it right, and leave a legacy of untouchable quality across the Greater Philadelphia Area.</p>
       </div>
       <div class="about-stats">
-        <div class="stat-box glow-effect"><h3>10+</h3><p>Years of Mastery</p></div>
-        <div class="stat-box glow-effect"><h3>5.0</h3><p>Client Satisfaction</p></div>
+        <div class="stat-box glow-effect"><h3 class="text-glow-orange">10+</h3><p>Years of Mastery</p></div>
+        <div class="stat-box glow-effect"><h3 class="text-glow-orange">5.0</h3><p>Client Satisfaction</p></div>
       </div>
     </section>
   </main>
 
   <main id="view-contact" class="tab-view">
     <div class="internal-hero">
-      <h1>SECURE YOUR SPOT</h1>
+      <h1 class="text-glow-orange">SECURE YOUR SPOT</h1>
       <p>Priority scheduling for Montgomery County residents.</p>
     </div>
     <section class="contact-section">
@@ -196,7 +220,7 @@
       </div>
     </div>
     <div class="footer-logo">
-      <img src="tiger-logo.jpg" alt="Centered Bottom Logo" style="height: 80px; width: auto;">
+      <img src="tiger-logo.png" alt="Centered Bottom Logo" style="height: 80px; width: auto;">
     </div>
     <div class="google-rating">
       <div>
