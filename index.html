@@ -14,13 +14,18 @@
     <div class="nav-logo">
       <img src="tiger-logo.png" alt="Tiger Custom Construction Logo" style="height: 50px; width: auto;">
     </div>
+    
+    <input type="checkbox" id="nav-toggle" class="nav-checkbox">
+    <label for="nav-toggle" class="nav-toggle-btn"><i class="fa-solid fa-bars"></i></label>
+
     <ul class="nav-links">
       <li><a href="#" class="nav-route active" data-target="view-home">Home</a></li>
       <li><a href="#" class="nav-route" data-target="view-portfolio">Portfolio</a></li>
       <li><a href="#" class="nav-route" data-target="view-about">About Us</a></li>
       <li><a href="#" class="nav-route" data-target="view-contact">Contact</a></li>
+      <li class="mobile-only-cta"><a href="#" class="nav-cta nav-route" data-target="view-contact">SECURE BLUEPRINT</a></li>
     </ul>
-    <a href="#" class="nav-cta nav-route" data-target="view-contact">SECURE MY CUSTOM BLUEPRINT</a>
+    <a href="#" class="nav-cta nav-route desktop-cta" data-target="view-contact">SECURE MY CUSTOM BLUEPRINT</a>
   </nav>
 
   <main id="view-home" class="tab-view active-view">
@@ -31,11 +36,11 @@
       </div>
       <div class="trust-anchor">
         <span><i class="fa-solid fa-shield-halved"></i> Fully Licensed & Insured</span>
-        <span><i class="fa-solid fa-trophy"></i> Voted #1 in Montgomery County</span>
-        <span><i class="fa-solid fa-calendar-check"></i> Free On-Site Evaluations</span>
+        <span><i class="fa-solid fa-trophy"></i> Voted #1 in Montco</span>
+        <span><i class="fa-solid fa-calendar-check"></i> Free Evaluations</span>
       </div>
       <div class="stats-badge">
-        <h2>5,200+</h2>
+        <h2 class="text-glow-orange">5,200+</h2>
         <p>Projects Completed in the Greater Philadelphia Area</p>
       </div>
     </header>
@@ -94,9 +99,9 @@
     <section class="utility-row">
       <div class="slider-box">
         <div class="slider-container">
-          <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=500&q=80" alt="After" class="slider-img">
+          <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=800&q=80" alt="After" class="slider-img">
           <div class="img-fg-wrap">
-            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=500&q=80" alt="Before" class="slider-img" style="width:500px; max-width:none;">
+            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80" alt="Before" class="slider-img">
           </div>
           <input type="range" min="1" max="100" value="50" class="html-slider" id="drag-engine">
           <div class="slider-badge">Drag Slider</div>
@@ -115,7 +120,7 @@
 
   <main id="view-portfolio" class="tab-view">
     <div class="internal-hero">
-      <h1>OUR MASTERPIECES</h1>
+      <h1 class="text-glow-orange">OUR MASTERPIECES</h1>
       <p>Precision execution in every brick, shingle, and panel.</p>
     </div>
     <section class="portfolio-grid">
@@ -127,7 +132,7 @@
 
   <main id="view-about" class="tab-view">
     <div class="internal-hero">
-      <h1>THE TIGER LEGACY</h1>
+      <h1 class="text-glow-orange">THE TIGER LEGACY</h1>
       <p>Forged in Norristown. Built to weather any storm.</p>
     </div>
     <section class="about-content">
@@ -138,15 +143,15 @@
         <p>Headquartered in Norristown, PA, our mission is simple: to build it once, build it right, and leave a legacy of untouchable quality across the Greater Philadelphia Area.</p>
       </div>
       <div class="about-stats">
-        <div class="stat-box glow-effect"><h3>10+</h3><p>Years of Mastery</p></div>
-        <div class="stat-box glow-effect"><h3>5.0</h3><p>Client Satisfaction</p></div>
+        <div class="stat-box glow-effect"><h3 class="text-glow-orange">10+</h3><p>Years of Mastery</p></div>
+        <div class="stat-box glow-effect"><h3 class="text-glow-orange">5.0</h3><p>Client Satisfaction</p></div>
       </div>
     </section>
   </main>
 
   <main id="view-contact" class="tab-view">
     <div class="internal-hero">
-      <h1>SECURE YOUR SPOT</h1>
+      <h1 class="text-glow-orange">SECURE YOUR SPOT</h1>
       <p>Priority scheduling for Montgomery County residents.</p>
     </div>
     <section class="contact-section">
@@ -154,20 +159,20 @@
         <h2>Initiate Your Build</h2>
         <form id="tiger-form">
           <div class="input-group">
-            <label>Who holds the vision?</label>
-            <input type="text" placeholder="Full Name" required>
+            <label for="client-name">Who holds the vision?</label>
+            <input type="text" id="client-name" placeholder="Full Name" required>
           </div>
           <div class="input-group">
-            <label>Where should we send the blueprint?</label>
-            <input type="email" placeholder="Email Address" required>
+            <label for="client-email">Where should we send the blueprint?</label>
+            <input type="email" id="client-email" placeholder="Email Address" required>
           </div>
           <div class="input-group">
-            <label>Direct Line</label>
-            <input type="tel" placeholder="(610) 656-3960" required>
+            <label for="client-phone">Direct Line</label>
+            <input type="tel" id="client-phone" placeholder="(610) 656-3960" required>
           </div>
           <div class="input-group">
-            <label>Describe the transformation needed...</label>
-            <textarea rows="4" placeholder="e.g., Complete roof overhaul or custom stone veneer..." required></textarea>
+            <label for="client-desc">Describe the transformation needed...</label>
+            <textarea id="client-desc" rows="4" placeholder="e.g., Complete roof overhaul or custom stone veneer..." required></textarea>
           </div>
           <button type="submit" class="submit-btn" id="form-btn">ACTIVATE MY PROJECT</button>
         </form>
