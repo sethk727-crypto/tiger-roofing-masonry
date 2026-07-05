@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   
   // ==========================================
-  // 1. SPA ROUTING ENGINE (TAB SWITCHING) - FIXED
+  // 1. SPA ROUTING ENGINE (TAB SWITCHING)
   // ==========================================
   const navLinks = document.querySelectorAll('.nav-route');
   const tabViews = document.querySelectorAll('.tab-view');
@@ -11,39 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const targetId = this.getAttribute('data-target');
 
-      // --- NEW LOGIC FOR SERVICES SCROLLING ---
-      if (targetId === 'section-services') {
-        // Step 1: Hide all views
-        tabViews.forEach(view => {
-          view.classList.remove('active-view');
-          view.style.animation = 'none'; 
-        });
-        
-        // Step 2: Force Home tab to be active (since services are on the home tab)
-        const homeView = document.getElementById('view-home');
-        homeView.classList.add('active-view');
-        
-        // Update nav UI to highlight "Home" but allow action
-        navLinks.forEach(nav => nav.classList.remove('active'));
-        document.querySelector('.nav-route[data-target="view-home"]').classList.add('active');
-
-        // Step 3: Scroll to the services section (needs a tiny timeout to allow display:block to render)
-        setTimeout(() => {
-          const servicesSection = document.getElementById('section-services');
-          if (servicesSection) {
-            servicesSection.scrollIntoView({ behavior: 'smooth' });
-          }
-        }, 50); 
-        
-        return; // Stop running the rest of the tab code
-      }
-
-      // --- STANDARD TAB SWITCHING LOGIC ---
-      
       // Update Nav Active States
       navLinks.forEach(nav => nav.classList.remove('active'));
-      
-      // Only highlight top links, not the CTA button or inner card links
+      // Only highlight top links, not the CTA button
       if (!this.classList.contains('nav-cta') && !this.classList.contains('hero-btn') && !this.classList.contains('card-link')) {
         this.classList.add('active');
       }
@@ -61,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         void targetView.offsetWidth; // Trigger reflow
         targetView.style.animation = 'hologramFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards';
         
-        // Smooth snap to top for new tabs
+        // Smooth snap to top
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     });
