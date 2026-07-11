@@ -19,7 +19,7 @@ body { background-color: var(--bg-base); color: var(--text-primary); font-family
 .tab-view { display: none; }
 .active-view { display: block; animation: hologramFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 
-/* --- ADVANCED UTILITIES --- */
+/* --- 1. ADVANCED TEXT GLOW UTILITY --- */
 .text-glow-orange {
   color: #ffffff !important;
   text-shadow: 
@@ -91,8 +91,22 @@ body { background-color: var(--bg-base); color: var(--text-primary); font-family
 .card-link { margin-top: 2rem; color: var(--brand-orange); text-decoration: none; font-weight: 800; text-transform: uppercase; font-size: 0.9rem; transition: text-shadow var(--transition-speed); }
 .card-link:hover { text-shadow: 0 0 15px rgba(249, 115, 22, 0.9); }
 
-/* --- PORTFOLIO & ABOUT --- */
-.advanced-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; max-width: var(--max-width); margin: 4rem auto; padding: 0 5%; grid-auto-rows: 250px; }
+.hover-context-box { position: absolute; top: 15%; right: -5%; background: rgba(21, 21, 24, 0.98); backdrop-filter: blur(10px); border: 2px solid var(--brand-orange); border-radius: 6px; padding: 1.2rem; text-align: left; z-index: 50; box-shadow: 0 15px 35px rgba(0,0,0,0.9), 0 0 20px rgba(249,115,22,0.3); opacity: 0; visibility: hidden; transform: translateX(-10px); transition: all 0.3s; }
+.service-card:hover .hover-context-box { opacity: 1; visibility: visible; right: -15%; transform: translateX(0); }
+.hover-context-box span { display: block; font-size: 0.85rem; font-weight: 700; color: #9ca3af; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); transition: all 0.2s; }
+.hover-context-box span.highlight-item, .hover-context-box span:hover { color: #ffffff; text-shadow: 0 0 8px rgba(249, 115, 22, 0.9); }
+.hover-context-box span:last-child { border-bottom: none; }
+
+/* --- FULL-WIDTH MAP & UTILITY ROW --- */
+.utility-row { display: block; max-width: var(--max-width); margin: 0 auto 5rem auto; padding: 0 5%; }
+.utility-row h4 { font-size: 1.5rem; margin-bottom: 1.5rem; font-weight: 800; color: #fff;}
+.map-box { width: 100%; height: 350px; background: linear-gradient(rgba(10,10,12,0.5), rgba(10,10,12,0.85)), url('https://placehold.co/800x400/242426/f97316?text=Live+Map'); background-size: cover; background-position: center; border-radius: 10px; border: 1px solid var(--border-subtle); position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+.map-box iframe { width: 100%; height: 100%; position: absolute; top: 0; left: 0; filter: invert(100%) hue-rotate(180deg) contrast(110%) brightness(90%); }
+.radar-core { position: absolute; width: 12px; height: 12px; background-color: var(--brand-orange); border-radius: 50%; z-index: 4; box-shadow: 0 0 10px var(--brand-orange); left: 25%; }
+.radar-ping { position: absolute; left: 25%; width: 12px; height: 12px; background-color: var(--brand-orange); border-radius: 50%; z-index: 3; animation: radar-wave 2s cubic-bezier(0, 0, 0.2, 1) infinite; }
+
+/* --- MODERN PORTFOLIO IMAGE GRID --- */
+.advanced-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; max-width: var(--max-width); margin: 4rem auto; padding: 0 5%; grid-auto-rows: 250px; grid-auto-flow: dense; }
 .portfolio-item { position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: 10px; cursor: pointer; }
 .portfolio-item.tall { grid-row: span 2; }
 .portfolio-item.wide { grid-column: span 2; }
@@ -102,6 +116,7 @@ body { background-color: var(--bg-base); color: var(--text-primary); font-family
 .portfolio-item:hover .portfolio-overlay { bottom: 0; }
 .portfolio-overlay h4 { color: #fff; font-size: 1.1rem; font-weight: 800; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
 
+/* --- ABOUT TAB CONTENT --- */
 .about-content { display: flex; flex-wrap: wrap; gap: 4rem; max-width: var(--max-width); margin: 5rem auto; padding: 0 5%; align-items: center; }
 .about-text { flex: 1; min-width: 300px; }
 .about-text h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); color: var(--brand-orange); margin-bottom: 1.5rem; line-height: 1.2;}
@@ -125,34 +140,29 @@ body { background-color: var(--bg-base); color: var(--text-primary); font-family
 .contact-direct p { font-size: 1.1rem; color: var(--text-secondary); display: flex; align-items: center; gap: 1rem; }
 .contact-direct i { color: var(--brand-orange); font-size: 1.3rem; }
 
-/* --- UTILITY ROW (Cross-Browser Slider) --- */
-.utility-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem; max-width: var(--max-width); margin: 0 auto 5rem auto; padding: 0 5%; }
-.slider-container { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 8px; overflow: hidden; border: 1px solid var(--border-subtle); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-.slider-img { width: 100%; height: 100%; object-fit: cover; position: absolute; top:0; left:0;}
-.img-fg-wrap { position: absolute; top: 0; left: 0; width: 50%; height: 100%; overflow: hidden; border-right: 4px solid var(--brand-orange); box-shadow: 5px 0 15px rgba(0,0,0,0.7); }
-.img-fg-wrap img { width: 200%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; max-width: none; }
-
-/* Advanced Webkit Styles for the input range slider */
-.html-slider { position: absolute; -webkit-appearance: none; appearance: none; width: 100%; height: 100%; background: transparent; outline: none; z-index: 30; cursor: ew-resize; margin: 0; padding: 0;}
-.html-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 40px; height: 100vh; background: transparent; cursor: ew-resize; }
-.html-slider::-moz-range-thumb { width: 40px; height: 100vh; background: transparent; border: none; cursor: ew-resize; }
-
-.slider-badge { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); background: var(--brand-orange); padding: 6px 16px; font-size: 0.75rem; font-weight: 800; border-radius: 4px; z-index: 40; box-shadow: 0 0 15px rgba(249, 115, 22, 0.6); pointer-events: none; }
-
-.map-box { width: 100%; height: clamp(200px, 20vw, 300px); background: linear-gradient(rgba(10,10,12,0.5), rgba(10,10,12,0.85)), url('https://placehold.co/400x200/242426/f97316?text=Map+Target'); background-size: cover; background-position: center; border-radius: 8px; border: 1px solid var(--border-subtle); position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-.radar-core { position: absolute; width: 12px; height: 12px; background-color: var(--brand-orange); border-radius: 50%; z-index: 4; box-shadow: 0 0 10px var(--brand-orange); left: 25%; }
-.radar-ping { position: absolute; left: 25%; width: 12px; height: 12px; background-color: var(--brand-orange); border-radius: 50%; z-index: 3; animation: radar-wave 2s cubic-bezier(0, 0, 0.2, 1) infinite; }
-
 .footer-trust { border-top: 1px solid var(--border-subtle); background-color: #050505; padding: 4rem 5%; display: flex; justify-content: space-between; align-items: center; max-width: 100%; margin: 0 auto; flex-wrap: wrap; gap: 2rem;}
 .google-rating { display: flex; align-items: center; gap: 1rem; }
 
 /* --- PHYSICS ANIMATION ENGINE --- */
-@keyframes pulse-glow { 0% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.7); } 70% { box-shadow: 0 0 0 18px rgba(249, 115, 22, 0); } 100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0); } }
-@keyframes levitate { 0% { transform: translateY(-50%); } 50% { transform: translateY(calc(-50% - 12px)); filter: drop-shadow(0 25px 35px rgba(0,0,0,0.9)); } 100% { transform: translateY(-50%); } }
-@keyframes radar-wave { 75%, 100% { transform: scale(6); opacity: 0; } }
-@keyframes hologramFadeIn { 0% { opacity: 0; transform: translateY(20px); filter: blur(5px); } 100% { opacity: 1; transform: translateY(0); filter: blur(0); } }
+@keyframes pulse-glow {
+  0% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.7); }
+  70% { box-shadow: 0 0 0 18px rgba(249, 115, 22, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0); }
+}
+@keyframes levitate {
+  0% { transform: translateY(-50%); }
+  50% { transform: translateY(calc(-50% - 12px)); filter: drop-shadow(0 25px 35px rgba(0,0,0,0.9)); }
+  100% { transform: translateY(-50%); }
+}
+@keyframes radar-wave {
+  75%, 100% { transform: scale(6); opacity: 0; }
+}
+@keyframes hologramFadeIn {
+  0% { opacity: 0; transform: translateY(30px) scale(0.98); filter: blur(10px); }
+  100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
 
-/* --- RESPONSIVE BREAKPOINTS --- */
+/* --- RESPONSIVE BREAKPOINTS (Mobile & Tablet) --- */
 @media screen and (max-width: 900px) {
   .features-bar { grid-template-columns: repeat(2, 1fr); margin-top: 30px; }
   .footer-trust { flex-direction: column; text-align: center; justify-content: center; }
@@ -173,5 +183,5 @@ body { background-color: var(--bg-base); color: var(--text-primary); font-family
   .nav-links a { display: block; padding: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
   .nav-links a.active { border-bottom: 1px solid var(--brand-orange); background: rgba(249, 115, 22, 0.05); }
   
-  .nav-checkbox:checked ~ .nav-links { max-height: 400px; }
+  .nav-checkbox:checked ~ .nav-links { max-height: 500px; }
 }
