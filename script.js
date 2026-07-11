@@ -56,18 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ==========================================
-  // 3. BEFORE/AFTER SLIDER ENGINE
-  // ==========================================
-  const slider = document.getElementById('drag-engine');
-  const fgWrap = document.querySelector('.img-fg-wrap');
-  if (slider && fgWrap) {
-    slider.addEventListener('input', (e) => { 
-      fgWrap.style.width = `${e.target.value}%`; 
-    });
-  }
-
-  // ==========================================
-  // 4. NLP HYPNOTIC FORM SUBMISSION
+  // 3. NLP HYPNOTIC FORM SUBMISSION
   // ==========================================
   const formBtn = document.getElementById('form-btn');
   const form = document.getElementById('tiger-form');
