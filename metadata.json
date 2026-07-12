@@ -1,0 +1,8 @@
+{
+  "name": "Tiger Custom Construction",
+  "description": "Premium Roofing, Masonry, and Siding in the Greater Philadelphia Area. Build it once, build it right.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
