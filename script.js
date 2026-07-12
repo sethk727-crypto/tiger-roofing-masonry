@@ -56,7 +56,122 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ==========================================
-  // 3. NLP HYPNOTIC FORM SUBMISSION
+  // 3. DYNAMIC LIVE PROJECT COUNTER
+  // ==========================================
+  const counterEl = document.getElementById('live-project-counter');
+  if (counterEl) {
+    const targetCount = parseInt(counterEl.getAttribute('data-count'), 10) || 5280;
+    const startCount = 4950;
+    let currentCount = startCount;
+    const duration = 2500; // ms
+    const intervalTime = 30; // ms
+    const step = Math.ceil((targetCount - startCount) / (duration / intervalTime));
+
+    const counterTimer = setInterval(() => {
+      currentCount += step;
+      if (currentCount >= targetCount) {
+        counterEl.textContent = targetCount.toLocaleString() + '+';
+        clearInterval(counterTimer);
+      } else {
+        counterEl.textContent = currentCount.toLocaleString();
+      }
+    }, intervalTime);
+  }
+
+  // ==========================================
+  // 4. INTERACTIVE ROI ESTIMATOR ENGINE
+  // ==========================================
+  const slider = document.getElementById('home-value-slider');
+  const valDisplay = document.getElementById('val-display');
+  const selectBtns = document.querySelectorAll('.roi-select-btn');
+  const equityResult = document.getElementById('equity-result');
+  const energyResult = document.getElementById('energy-result');
+  const percentResult = document.getElementById('percent-result');
+  const roiTransferBtn = document.getElementById('roi-transfer-btn');
+
+  let activeRoi = 0.08; // default roofing ROI
+  let activeEnergy = 420; // default annual savings
+  let activeProjectName = "Architectural Roofing";
+
+  function calculateROI() {
+    if (!slider) return;
+    const homeVal = parseInt(slider.value, 10);
+    
+    // Update Display
+    valDisplay.textContent = '$' + homeVal.toLocaleString();
+
+    // Calculations
+    const addedValue = Math.round(homeVal * activeRoi);
+    const percentage = (activeRoi * 100).toFixed(1);
+
+    // Render results with animation
+    if (equityResult) {
+      equityResult.textContent = '$' + addedValue.toLocaleString();
+    }
+    if (percentResult) {
+      percentResult.textContent = percentage + '% Appraised';
+    }
+    if (energyResult) {
+      energyResult.textContent = activeEnergy > 0 ? '$' + activeEnergy + '/yr' : 'N/A (Structural)';
+    }
+  }
+
+  // Slider Input Event
+  if (slider) {
+    slider.addEventListener('input', calculateROI);
+  }
+
+  // Selector Button Events
+  selectBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      selectBtns.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+
+      activeRoi = parseFloat(this.getAttribute('data-roi'));
+      activeEnergy = parseInt(this.getAttribute('data-energy'), 10);
+      activeProjectName = this.textContent.trim();
+
+      calculateROI();
+    });
+  });
+
+  // ROI Transfer state (Seamless persuation bridge)
+  if (roiTransferBtn) {
+    roiTransferBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (!slider) return;
+
+      const homeVal = parseInt(slider.value, 10);
+      const addedValue = Math.round(homeVal * activeRoi);
+
+      // Pre-fill description
+      const clientDesc = document.getElementById('client-desc');
+      if (clientDesc) {
+        clientDesc.value = `ROI-CALCULATED GOAL:\nPrestige ${activeProjectName} project for my property currently valued at $${homeVal.toLocaleString()}.\nEstimated Appraisal Equity Added: $${addedValue.toLocaleString()}.\nLet's coordinate a priority inspection.`;
+      }
+
+      // Display custom ROI transferred badge on Contact Form
+      const roiBadge = document.getElementById('contact-roi-badge');
+      const roiValueDisplay = document.getElementById('contact-roi-value');
+      if (roiBadge && roiValueDisplay) {
+        roiValueDisplay.textContent = '$' + addedValue.toLocaleString();
+        roiBadge.style.display = 'block';
+        roiBadge.style.animation = 'hologramFadeIn 0.6s forwards';
+      }
+
+      // Switch view smoothly to Contact Tab
+      const contactRoute = document.querySelector('.nav-route[data-target="view-contact"]');
+      if (contactRoute) {
+        contactRoute.click();
+      }
+    });
+  }
+
+  // Run initial calculation
+  calculateROI();
+
+  // ==========================================
+  // 5. NLP HYPNOTIC FORM SUBMISSION
   // ==========================================
   const formBtn = document.getElementById('form-btn');
   const form = document.getElementById('tiger-form');
@@ -65,15 +180,27 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       // NLP Transition State
-      formBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> TRANSMITTING BLUEPRINT...';
+      formBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> TRANSMITTING COORDINATES...';
       formBtn.style.backgroundColor = '#4285F4'; // Switch to trust blue
       formBtn.style.boxShadow = '0 0 30px rgba(66, 133, 244, 0.8)';
       
       setTimeout(() => {
-        formBtn.innerHTML = '<i class="fa-solid fa-check"></i> BLUEPRINT SECURED';
+        formBtn.innerHTML = '<i class="fa-solid fa-check"></i> PROPOSAL LOCK SECURED';
         formBtn.style.backgroundColor = '#34A853'; // Switch to success green
         formBtn.style.boxShadow = '0 0 30px rgba(52, 168, 83, 0.8)';
-        form.reset();
+        
+        // Clear forms and hide dynamic badges elegantly
+        setTimeout(() => {
+          form.reset();
+          formBtn.innerHTML = 'ACTIVATE MY EVALUATION & SECURE BLUEPRINT';
+          formBtn.style.backgroundColor = '';
+          formBtn.style.boxShadow = '';
+          
+          const roiBadge = document.getElementById('contact-roi-badge');
+          if (roiBadge) {
+            roiBadge.style.display = 'none';
+          }
+        }, 3000);
       }, 2000);
     });
   }
