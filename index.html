@@ -329,25 +329,27 @@
           <i class="fa-solid fa-circle-check" style="color: #34A853;"></i> Transferred Value Reframing: <strong id="contact-roi-value" class="text-glow-orange">$0</strong> immediate appraisal boost detected!
         </div>
 
-        <form id="tiger-form">
+        <form id="tiger-form" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="747e8608-3e87-46c7-bbc0-50fc63f292a7">
+
           <div class="input-group">
             <label for="client-name">Who holds the vision for this property?</label>
-            <input type="text" id="client-name" placeholder="Full Name" required>
+            <input type="text" id="client-name" name="Client Full Name" placeholder="Full Name" required>
             <span class="input-micro-text">Used exclusively to coordinate your personalized estate portfolio proposal.</span>
           </div>
           <div class="input-group">
             <label for="client-email">Where should we deliver your structural blueprint?</label>
-            <input type="email" id="client-email" placeholder="Email Address" required>
+            <input type="email" id="client-email" name="Email Address" placeholder="Email Address" required>
             <span class="input-micro-text">Zero spam. We respect your inbox. Expect only your layout estimates and timeline.</span>
           </div>
           <div class="input-group">
             <label for="client-phone">Direct Line (Mobile Recommended)</label>
-            <input type="tel" id="client-phone" placeholder="(610) 656-3960" required>
+            <input type="tel" id="client-phone" name="Phone Number" placeholder="(610) 656-3960" required>
             <span class="input-micro-text">Used only for rapid coordinate confirmation. We do not use annoying telemarketers.</span>
           </div>
           <div class="input-group">
             <label for="client-desc">Describe the structural transformation or repair goals...</label>
-            <textarea id="client-desc" rows="4" placeholder="e.g., Complete architectural roof replacement, historic chimney pointing, or siding upgrades..." required></textarea>
+            <textarea id="client-desc" name="Project Details & Requirements" rows="4" placeholder="e.g., Complete architectural roof replacement, historic chimney pointing, or siding upgrades..." required></textarea>
             <span class="input-micro-text">Tell us any specifications, approximate age of structure, or material desires.</span>
           </div>
           <button type="submit" class="submit-btn" id="form-btn">ACTIVATE MY EVALUATION & SECURE BLUEPRINT</button>
