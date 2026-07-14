@@ -150,6 +150,12 @@ document.addEventListener('DOMContentLoaded', () => {
         clientDesc.value = `ROI-CALCULATED GOAL:\nPrestige ${activeProjectName} project for my property currently valued at $${homeVal.toLocaleString()}.\nEstimated Appraisal Equity Added: $${addedValue.toLocaleString()}.\nLet's coordinate a priority inspection.`;
       }
 
+      // Mirror the estimate into its own sheet column for easy lead scoring
+      const roiHidden = document.getElementById('roi-hidden');
+      if (roiHidden) {
+        roiHidden.value = `$${addedValue.toLocaleString()} (${activeProjectName}, home value $${homeVal.toLocaleString()})`;
+      }
+
       // Display custom ROI transferred badge on Contact Form
       const roiBadge = document.getElementById('contact-roi-badge');
       const roiValueDisplay = document.getElementById('contact-roi-value');
@@ -171,37 +177,86 @@ document.addEventListener('DOMContentLoaded', () => {
   calculateROI();
 
   // ==========================================
-  // 5. NLP HYPNOTIC FORM SUBMISSION
+  // 5. LIVE LEAD TRANSMISSION ENGINE (SheetMonkey)
   // ==========================================
+  // Real async submission: every lead lands as a new row in the owner's
+  // Google Sheet. Button states reflect the ACTUAL request outcome, the
+  // honeypot silently drops bots, and a failed request keeps the visitor's
+  // answers on screen so nothing is ever lost.
+  const SHEET_ENDPOINT = 'https://api.sheetmonkey.io/form/33RiaTBpV2HTTSmvNYuukX';
+  const FORM_BTN_DEFAULT = 'ACTIVATE MY EVALUATION & SECURE BLUEPRINT';
   const formBtn = document.getElementById('form-btn');
   const form = document.getElementById('tiger-form');
-  
-  if(form) {
-    form.addEventListener('submit', (e) => {
+
+  function setFormBtn(html, color, glow, disabled) {
+    formBtn.innerHTML = html;
+    formBtn.style.backgroundColor = color;
+    formBtn.style.boxShadow = glow;
+    formBtn.disabled = disabled;
+  }
+
+  if (form && formBtn) {
+    // No-JS fallback: if this script never runs, the native POST still hits
+    // SheetMonkey; this field bounces the visitor straight back to the site.
+    const redirectField = form.querySelector('input[name="x-sheetmonkey-redirect"]');
+    if (redirectField) redirectField.value = window.location.href;
+
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      // NLP Transition State
-      formBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> TRANSMITTING COORDINATES...';
-      formBtn.style.backgroundColor = '#4285F4'; // Switch to trust blue
-      formBtn.style.boxShadow = '0 0 30px rgba(66, 133, 244, 0.8)';
-      
-      setTimeout(() => {
-        formBtn.innerHTML = '<i class="fa-solid fa-check"></i> PROPOSAL LOCK SECURED';
-        formBtn.style.backgroundColor = '#34A853'; // Switch to success green
-        formBtn.style.boxShadow = '0 0 30px rgba(52, 168, 83, 0.8)';
-        
-        // Clear forms and hide dynamic badges elegantly
+      if (formBtn.disabled) return; // block double-fires mid-flight
+
+      // Honeypot check: humans never see the field, bots fill everything.
+      const trap = form.querySelector('input[name="_gotcha"]');
+      if (trap && trap.value) { form.reset(); return; }
+
+      // Build a clean payload: named fields become sheet columns.
+      const payload = {};
+      new FormData(form).forEach((value, key) => {
+        if (key === '_gotcha' || key.indexOf('x-sheetmonkey') === 0) return;
+        if (typeof value === 'string' && value.trim() === '') return;
+        payload[key] = value;
+      });
+      payload['Submitted At'] = new Date().toLocaleString('en-US', {
+        timeZone: 'America/New_York',
+        dateStyle: 'medium',
+        timeStyle: 'short'
+      }) + ' ET';
+      payload['Lead Source'] = 'Website Contact Form';
+
+      setFormBtn(
+        '<i class="fa-solid fa-circle-notch fa-spin"></i> TRANSMITTING COORDINATES...',
+        '#4285F4', '0 0 30px rgba(66, 133, 244, 0.8)', true
+      );
+
+      try {
+        const res = await fetch(SHEET_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok) throw new Error('SheetMonkey responded ' + res.status);
+
+        setFormBtn(
+          '<i class="fa-solid fa-check"></i> PROPOSAL LOCK SECURED',
+          '#34A853', '0 0 30px rgba(52, 168, 83, 0.8)', true
+        );
+        form.reset();
+        const roiBadge = document.getElementById('contact-roi-badge');
+        if (roiBadge) roiBadge.style.display = 'none';
+        setTimeout(() => setFormBtn(FORM_BTN_DEFAULT, '', '', false), 4000);
+      } catch (err) {
+        // Network/service failure: keep every field intact and surface the
+        // hotline so the lead can still reach us immediately.
+        setFormBtn(
+          '<i class="fa-solid fa-triangle-exclamation"></i> CONNECTION ISSUE — CALL (610) 656-3960',
+          '#ef4444', '0 0 30px rgba(239, 68, 68, 0.7)', false
+        );
         setTimeout(() => {
-          form.reset();
-          formBtn.innerHTML = 'ACTIVATE MY EVALUATION & SECURE BLUEPRINT';
-          formBtn.style.backgroundColor = '';
-          formBtn.style.boxShadow = '';
-          
-          const roiBadge = document.getElementById('contact-roi-badge');
-          if (roiBadge) {
-            roiBadge.style.display = 'none';
+          if (formBtn.innerHTML.indexOf('CONNECTION ISSUE') !== -1) {
+            setFormBtn(FORM_BTN_DEFAULT, '', '', false);
           }
-        }, 3000);
-      }, 2000);
+        }, 6000);
+      }
     });
   }
 

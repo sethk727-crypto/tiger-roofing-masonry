@@ -1057,3 +1057,19 @@ body { background-color: var(--bg-base); color: var(--text-primary); font-family
     box-shadow: 0 0 20px rgba(249, 115, 22, 0.55);
   }
 }
+
+/* --- FORM HONEYPOT (anti-spam field, invisible to humans) --- */
+.hp-field {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Final gallery tile always stretches the full row — no trailing gaps
+   regardless of how many photos are live or how many columns render. */
+.advanced-grid .portfolio-item:last-child {
+  grid-column: 1 / -1;
+}
