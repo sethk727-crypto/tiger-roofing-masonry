@@ -279,7 +279,7 @@
     </section>
 
     <!-- ===== INFINITE PROJECT MARQUEE (Drop-In Photo Architecture) =====
-         To update: drop project-1.jpg ... project-12.jpg into the repo root. Nothing else to touch. -->
+         To update: overwrite project-1.jpg ... project-11.jpg in the repo root. Nothing else to touch. -->
     <section class="marquee-section reveal" aria-label="Recent project photo stream">
       <div class="marquee-label"><i class="fa-solid fa-camera"></i> LIVE FROM THE FIELD — RECENT TIGER PROJECTS</div>
       <div class="marquee-viewport">
@@ -295,7 +295,6 @@
           <img src="project-9.jpg" alt="Tiger Custom Construction exterior siding upgrade in Montgomery County PA" loading="lazy">
           <img src="project-10.jpg" alt="Tiger Custom Construction custom stone veneer in Delaware County PA" loading="lazy">
           <img src="project-11.jpg" alt="Tiger Custom Construction metal roofing project in Greater Philadelphia PA" loading="lazy">
-          <img src="project-12.jpg" alt="Tiger Custom Construction full exterior renovation in Newtown Square PA" loading="lazy">
           <!-- Duplicate set for a seamless infinite loop (hidden from screen readers) -->
           <img src="project-1.jpg" alt="" aria-hidden="true" loading="lazy">
           <img src="project-2.jpg" alt="" aria-hidden="true" loading="lazy">
@@ -308,7 +307,6 @@
           <img src="project-9.jpg" alt="" aria-hidden="true" loading="lazy">
           <img src="project-10.jpg" alt="" aria-hidden="true" loading="lazy">
           <img src="project-11.jpg" alt="" aria-hidden="true" loading="lazy">
-          <img src="project-12.jpg" alt="" aria-hidden="true" loading="lazy">
         </div>
       </div>
     </section>
@@ -321,7 +319,7 @@
     </div>
     
     <!-- ===== DROP-IN PHOTO ARCHITECTURE =====
-         To update this gallery: drop project-1.jpg ... project-12.jpg into the repo root.
+         To update this gallery: overwrite project-1.jpg ... project-11.jpg in the repo root.
          The asymmetrical grid (tall / wide spans) composes itself automatically. -->
     <section class="portfolio-grid advanced-grid">
       <div class="portfolio-item glow-effect reveal tall">
@@ -364,13 +362,9 @@
         <img src="project-10.jpg" alt="Stone and stucco estate with custom red double-door entry and new roof by Tiger Custom Construction in Newtown Square PA" loading="lazy">
         <div class="portfolio-overlay"><h4>Stone & Stucco Estate — Custom Entry</h4></div>
       </div>
-      <div class="portfolio-item glow-effect reveal tall">
+      <div class="portfolio-item glow-effect reveal">
         <img src="project-11.jpg" alt="Brick ranch home with new roof and arched portico entry with bluestone walkway by Tiger Custom Construction in Delaware County PA" loading="lazy">
         <div class="portfolio-overlay"><h4>Brick Ranch — New Roof & Arched Portico</h4></div>
-      </div>
-      <div class="portfolio-item glow-effect reveal wide" style="--reveal-delay: 0.08s;">
-        <img src="project-12.jpg" alt="Stone ranch home with new architectural shingle roof and custom masonry by Tiger Custom Construction in Montgomery County PA" loading="lazy">
-        <div class="portfolio-overlay"><h4>Stone Ranch — New Roof & Masonry</h4></div>
       </div>
     </section>
   </main>
@@ -497,8 +491,14 @@
           <i class="fa-solid fa-circle-check" style="color: #34A853;"></i> Transferred Value Reframing: <strong id="contact-roi-value" class="text-glow-orange">$0</strong> immediate appraisal boost detected!
         </div>
 
-        <form id="tiger-form" action="https://api.web3forms.com/submit" method="POST">
-          <input type="hidden" name="access_key" value="747e8608-3e87-46c7-bbc0-50fc63f292a7">
+        <!-- Leads stream directly into the owner's Google Sheet via SheetMonkey.
+             The native action doubles as a no-JavaScript fallback; script.js
+             upgrades submission to async fetch with live button states. -->
+        <form id="tiger-form" action="https://api.sheetmonkey.io/form/33RiaTBpV2HTTSmvNYuukX" method="POST">
+          <input type="hidden" name="x-sheetmonkey-redirect" value="">
+          <input type="hidden" name="ROI Estimate" id="roi-hidden" value="">
+          <!-- Honeypot: invisible to humans, bots auto-fill it and get silently dropped -->
+          <input type="text" name="_gotcha" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
 
           <div class="input-group">
             <label for="client-name">Who holds the vision for this property?</label>
