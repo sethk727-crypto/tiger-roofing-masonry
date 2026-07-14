@@ -704,3 +704,356 @@ body { background-color: var(--bg-base); color: var(--text-primary); font-family
     display: none;
   }
 }
+
+/* ==========================================================
+   V2 AGENCY REFACTOR LAYER
+   Storm CRO Unit / Drop-In Photo Architecture / Micro-Interactions
+   ========================================================== */
+
+/* --- STORM DAMAGE CONVERSION SECTION (Glassmorphism + Pulsing Border) --- */
+.storm-section {
+  padding: 0 5%;
+  max-width: var(--max-width);
+  margin: 4rem auto 1rem auto;
+}
+
+.storm-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: center;
+  padding: clamp(2rem, 5vw, 3.25rem);
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(31, 31, 35, 0.55), rgba(21, 21, 24, 0.7));
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid rgba(249, 115, 22, 0.4);
+  animation: storm-border-pulse 3.2s ease-in-out infinite;
+  overflow: hidden;
+}
+
+.storm-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(620px circle at 0% 0%, rgba(249, 115, 22, 0.14), transparent 45%),
+    radial-gradient(500px circle at 100% 100%, rgba(249, 115, 22, 0.08), transparent 40%);
+}
+
+@keyframes storm-border-pulse {
+  0%, 100% {
+    border-color: rgba(249, 115, 22, 0.35);
+    box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.25), 0 20px 45px rgba(0, 0, 0, 0.55);
+  }
+  50% {
+    border-color: rgba(249, 115, 22, 0.8);
+    box-shadow: 0 0 42px 4px rgba(249, 115, 22, 0.22), 0 20px 45px rgba(0, 0, 0, 0.55);
+  }
+}
+
+.storm-copy { position: relative; z-index: 2; }
+.storm-badge { margin-bottom: 1rem; }
+
+.storm-copy h2 {
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.storm-lead {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: var(--text-primary);
+  font-weight: 600;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  border-left: 3px solid var(--brand-orange);
+  padding-left: 1rem;
+}
+
+.storm-points { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.storm-points li { color: var(--text-secondary); font-size: 0.92rem; font-weight: 600; display: flex; align-items: center; gap: 0.6rem; }
+.storm-points i { color: var(--brand-orange); filter: drop-shadow(0 0 6px rgba(249, 115, 22, 0.6)); }
+
+.storm-action {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+.storm-cta-btn {
+  display: inline-block;
+  width: 100%;
+  background: var(--brand-orange);
+  color: #fff;
+  padding: 1.25rem 1.75rem;
+  border-radius: 8px;
+  font-weight: 800;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  text-align: center;
+  animation: pulse-glow 2.5s infinite;
+  transition: all var(--transition-speed);
+}
+
+.storm-cta-btn:hover {
+  background: var(--brand-orange-hover);
+  transform: translateY(-3px) scale(1.02);
+  animation: none;
+  box-shadow: 0 0 35px rgba(249, 115, 22, 0.9);
+}
+
+.storm-phone-link {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: 0.5px;
+  transition: all 0.3s;
+}
+.storm-phone-link i { color: var(--brand-orange); margin-right: 0.4rem; }
+.storm-phone-link:hover { text-shadow: 0 0 12px rgba(249, 115, 22, 0.8); }
+
+.storm-subnote { font-size: 0.75rem; color: var(--text-secondary); font-weight: 600; }
+.storm-subnote i { color: #34A853; margin-right: 0.3rem; }
+
+@media screen and (max-width: 900px) {
+  .storm-card { grid-template-columns: 1fr; }
+}
+
+/* Compact storm strip above the contact form */
+.storm-strip {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: rgba(249, 115, 22, 0.07);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(249, 115, 22, 0.35);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  animation: storm-border-pulse 3.2s ease-in-out infinite;
+}
+.storm-strip-icon { color: var(--brand-orange); font-size: 1.5rem; margin-top: 0.15rem; filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.6)); }
+.storm-strip p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
+.storm-strip strong { color: var(--text-primary); }
+
+/* --- INFINITE SCROLLING PROJECT MARQUEE --- */
+.marquee-section {
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  padding: 2.5rem 0 3rem 0;
+  margin-top: 2rem;
+}
+
+.marquee-label {
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--text-secondary);
+  margin-bottom: 1.75rem;
+}
+.marquee-label i { color: var(--brand-orange); margin-right: 0.5rem; }
+
+.marquee-viewport { position: relative; overflow: hidden; }
+
+/* Edge fades so photos melt into the dark surface */
+.marquee-viewport::before,
+.marquee-viewport::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(40px, 8vw, 140px);
+  z-index: 2;
+  pointer-events: none;
+}
+.marquee-viewport::before { left: 0; background: linear-gradient(to right, var(--bg-surface), transparent); }
+.marquee-viewport::after { right: 0; background: linear-gradient(to left, var(--bg-surface), transparent); }
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 55s linear infinite;
+  will-change: transform;
+}
+
+.marquee-track img {
+  width: clamp(200px, 24vw, 300px);
+  height: clamp(140px, 16vw, 200px);
+  object-fit: cover;
+  border-radius: 10px;
+  margin-right: 1.25rem;
+  border: 1px solid var(--border-subtle);
+  transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.marquee-track img:hover {
+  transform: scale(1.05);
+  border-color: var(--brand-orange);
+  box-shadow: 0 0 25px rgba(249, 115, 22, 0.45);
+}
+
+.marquee-viewport:hover .marquee-track { animation-play-state: paused; }
+
+/* Track holds two identical sets; -50% lands exactly on set two = seamless loop */
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* --- SCROLL REVEAL ENGINE (driven by IntersectionObserver in script.js) --- */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0s);
+  will-change: opacity, transform;
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .marquee-track { animation: none; flex-wrap: wrap; justify-content: center; row-gap: 1.25rem; width: 100%; }
+  .storm-card, .storm-strip { animation: none; }
+}
+
+/* --- GOOGLE REVIEWS CAROUSEL (About Tab) --- */
+.testimonials-section {
+  max-width: 900px;
+  margin: 0 auto 6rem auto;
+  padding: 0 5%;
+  text-align: center;
+}
+
+.testimonials-header h2 {
+  font-size: clamp(1.6rem, 3.5vw, 2.3rem);
+  font-weight: 800;
+  margin: 0.75rem 0 1rem 0;
+}
+
+.testimonials-rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+}
+.testimonials-rating strong { font-size: 2rem; font-weight: 800; }
+.rating-stars i { color: var(--brand-orange); font-size: 0.95rem; }
+.rating-count { font-size: 0.8rem; color: var(--text-secondary); font-weight: 600; }
+
+.review-carousel {
+  position: relative;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-bottom: 3px solid var(--brand-orange);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.45);
+}
+
+.review-track {
+  display: flex;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.review-slide {
+  flex: 0 0 100%;
+  min-width: 100%;
+  padding: clamp(1.75rem, 4vw, 2.75rem);
+  text-align: left;
+}
+
+.review-head {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.review-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(249, 115, 22, 0.15);
+  border: 1px solid rgba(249, 115, 22, 0.4);
+  color: var(--brand-orange);
+  font-weight: 800;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.review-meta { display: flex; flex-direction: column; }
+.review-meta strong { font-size: 1rem; }
+.review-meta span { font-size: 0.8rem; color: var(--text-secondary); }
+
+.review-stars { margin-left: auto; }
+.review-stars i { color: var(--brand-orange); font-size: 0.85rem; filter: drop-shadow(0 0 5px rgba(249, 115, 22, 0.5)); }
+
+.review-body {
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  color: var(--text-primary);
+  line-height: 1.8;
+  font-style: italic;
+  margin-bottom: 1.25rem;
+}
+
+.review-source { font-size: 0.78rem; color: var(--text-secondary); font-weight: 600; }
+.review-source i { color: #4285F4; margin-right: 0.35rem; }
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0 0 1.5rem 0;
+}
+
+.carousel-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: none;
+  background: var(--bg-surface-light);
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s;
+}
+
+.carousel-dot.active {
+  background: var(--brand-orange);
+  border-color: var(--brand-orange);
+  box-shadow: 0 0 10px rgba(249, 115, 22, 0.8);
+  transform: scale(1.2);
+}
+
+/* --- STICKY MOBILE "GET A QUOTE" CTA (glow upgrade) --- */
+@media screen and (max-width: 768px) {
+  .sticky-quote {
+    animation: pulse-glow 2.5s infinite;
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.55);
+  }
+}
