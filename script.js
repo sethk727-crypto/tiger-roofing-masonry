@@ -204,4 +204,86 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 2000);
     });
   }
+
+  // ==========================================
+  // 6. SCROLL REVEAL ENGINE (IntersectionObserver)
+  // ==========================================
+  // Elements tagged .reveal start at translateY(30px)/opacity:0 (see style.css)
+  // and glide into view. Once revealed, the classes are stripped so the reveal
+  // transition never fights the 3D tilt or .glow-effect hover transforms.
+  const revealEls = document.querySelectorAll('.reveal');
+
+  if ('IntersectionObserver' in window && revealEls.length) {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        el.classList.add('revealed');
+        revealObserver.unobserve(el);
+
+        // After the transition (0.8s) + any stagger delay, hand styling back
+        // to the base stylesheet. Computed styles are identical, so no jump.
+        const delayMs = (parseFloat(getComputedStyle(el).transitionDelay) || 0) * 1000;
+        setTimeout(() => el.classList.remove('reveal', 'revealed'), 900 + delayMs);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    revealEls.forEach(el => revealObserver.observe(el));
+  } else {
+    // Legacy fallback: show everything immediately.
+    revealEls.forEach(el => el.classList.remove('reveal'));
+  }
+
+  // ==========================================
+  // 7. AUTO-SLIDING GOOGLE REVIEWS CAROUSEL
+  // ==========================================
+  const reviewCarousel = document.getElementById('review-carousel');
+  const reviewTrack = document.getElementById('review-track');
+  const dotsContainer = document.getElementById('carousel-dots');
+
+  if (reviewCarousel && reviewTrack && dotsContainer) {
+    const slides = reviewTrack.querySelectorAll('.review-slide');
+    const slideCount = slides.length;
+    let currentSlide = 0;
+    let autoSlideTimer = null;
+
+    // Build navigation dots
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', 'Show review ' + (i + 1));
+      dot.addEventListener('click', () => {
+        goToSlide(i);
+        restartAutoSlide();
+      });
+      dotsContainer.appendChild(dot);
+    });
+
+    const dots = dotsContainer.querySelectorAll('.carousel-dot');
+
+    function goToSlide(index) {
+      currentSlide = (index + slideCount) % slideCount;
+      // The track is a block-level flex container, so its width equals one
+      // viewport (the slides overflow it) — translate -100% per slide.
+      reviewTrack.style.transform = 'translateX(' + (-currentSlide * 100) + '%)';
+      dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+    }
+
+    function startAutoSlide() {
+      autoSlideTimer = setInterval(() => goToSlide(currentSlide + 1), 5000);
+    }
+
+    function restartAutoSlide() {
+      clearInterval(autoSlideTimer);
+      startAutoSlide();
+    }
+
+    // Pause on hover / touch so reviews stay readable
+    reviewCarousel.addEventListener('mouseenter', () => clearInterval(autoSlideTimer));
+    reviewCarousel.addEventListener('mouseleave', restartAutoSlide);
+    reviewCarousel.addEventListener('touchstart', () => clearInterval(autoSlideTimer), { passive: true });
+    reviewCarousel.addEventListener('touchend', restartAutoSlide);
+
+    startAutoSlide();
+  }
 });
